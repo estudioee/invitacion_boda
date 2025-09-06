@@ -1,80 +1,128 @@
-const audio = document.getElementById('song');
-const btn = document.getElementById('audioBtn');
-let playing = false;
-btn.addEventListener('click', () => {
-  if (!playing) { audio.play(); btn.querySelector('i').className = 'fa-solid fa-pause'; btn.querySelector('span').textContent = 'Pausar canción'; }
-  else { audio.pause(); btn.querySelector('i').className = 'fa-solid fa-play'; btn.querySelector('span').textContent = 'Escucha nuestra canción'; }
-  playing = !playing;
-});
+const audioBtn = document.getElementById('audioBtn');
+  const song = document.getElementById('song');
 
+  // Forzar que todo el contenido del botón sea clickeable
+  audioBtn.style.cursor = 'pointer';
+  
+  audioBtn.addEventListener('click', () => {
+    if (song.paused) {
+      song.play().catch(e => console.log('Error reproduciendo audio:', e));
+      audioBtn.innerHTML = '<span class="material-symbols-outlined">pause</span><span>Pausar canción</span>';
+    } else {
+      song.pause();
+      audioBtn.innerHTML = '<span class="material-symbols-outlined">music_note</span><span>Escucha nuestra canción</span>';
+    }
+  });
+
+// Cuenta regresiva hasta la 1:00 AM del 27 de septiembre de 2025
 // Cuenta regresiva hasta la 1:00 AM del 27 de septiembre de 2025
 const target = new Date('2025-09-27T01:00:00').getTime();
 const countdownEl = document.getElementById('countdown');
-let confettiShown = false;
+let fireworksShown = false;
 
-function showConfetti() {
-  // Simple confeti usando canvas
-  const confettiCanvas = document.createElement('canvas');
-  confettiCanvas.style.position = 'fixed';
-  confettiCanvas.style.top = 0;
-  confettiCanvas.style.left = 0;
-  confettiCanvas.style.width = '100vw';
-  confettiCanvas.style.height = '100vh';
-  confettiCanvas.width = window.innerWidth;
-  confettiCanvas.height = window.innerHeight;
-  confettiCanvas.style.pointerEvents = 'none';
-  confettiCanvas.style.zIndex = 9999;
-  document.body.appendChild(confettiCanvas);
-  const ctx = confettiCanvas.getContext('2d');
-  const pieces = [];
-  for (let i = 0; i < 120; i++) {
-    pieces.push({
-      x: Math.random() * confettiCanvas.width,
-      y: Math.random() * -confettiCanvas.height,
-      r: 6 + Math.random() * 8,
-      d: Math.random() * 360,
-      color: `hsl(${Math.random()*360},80%,60%)`,
-      speed: 2 + Math.random() * 2
-    });
+function showFireworks() {
+  const canvas = document.createElement('canvas');
+  canvas.style.position = 'fixed';
+  canvas.style.top = 0;
+  canvas.style.left = 0;
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = 9999;
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  const particles = [];
+
+  function createFirework(x, y) {
+    const colors = ['#ff0044', '#ffbb00', '#00ffcc', '#3399ff', '#ff66ff'];
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x, y,
+        angle: Math.random() * 2 * Math.PI,
+        speed: Math.random() * 6 + 2,
+        radius: 2,
+        alpha: 1,
+        decay: Math.random() * 0.015 + 0.005,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
   }
-  let frames = 0;
-  function animateConfetti() {
-    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-    pieces.forEach(p => {
-      ctx.save();
+
+  function animate() {
+    // Estela transparente (no tapa la web, pero deja rastro épico)
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      const vx = Math.cos(p.angle) * p.speed;
+      const vy = Math.sin(p.angle) * p.speed + 0.2;
+      p.x += vx;
+      p.y += vy;
+      p.alpha -= p.decay;
+
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-      ctx.fillStyle = p.color;
+      ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
       ctx.fill();
-      ctx.restore();
-      p.y += p.speed;
-      p.x += Math.sin((frames + p.d) * 0.05) * 2;
-      if (p.y > confettiCanvas.height) p.y = -10;
-    });
-    frames++;
-    if (frames < 180) requestAnimationFrame(animateConfetti);
-    else confettiCanvas.remove();
+
+      if (p.alpha <= 0) particles.splice(i, 1);
+    }
+
+    if (particles.length > 0) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.remove();
+    }
   }
-  animateConfetti();
+
+  function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `${r},${g},${b}`;
+  }
+
+  // Lanza varios fuegos artificiales en distintas posiciones
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      createFirework(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height * 0.6
+      );
+      animate();
+    }, i * 800);
+  }
 }
 
 function updateCountdown() {
   const now = Date.now();
   const diff = target - now;
+
   if (diff <= 0) {
-    countdownEl.textContent = "¡Ya empezó el gran día!";
-    if (!confettiShown) {
-      showConfetti();
-      confettiShown = true;
+    countdownEl.textContent = "¡Ya empezó el gran día! 🎆";
+    if (!fireworksShown) {
+      showFireworks();
+      fireworksShown = true;
     }
     return;
   }
-  const d = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-  const h = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-  const m = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-  countdownEl.textContent = `¡Faltan ${d} días, ${h} horas, ${m} minutos!`;
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  countdownEl.textContent = `Faltan ${d} días, ${h} horas, ${m} minutos y ${s} segundos`;
 }
-setInterval(updateCountdown, 1000); updateCountdown();
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
 
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -105,16 +153,35 @@ function animate(){
 }
 animate();
 
-// QR de Google Drive (reemplaza la URL con tu carpeta real)
-const driveURL = 'https://drive.google.com/drive/folders/ENLACE_DE_TU_CARPETA';
-new QRCode(document.getElementById('qrcode'), { text: driveURL, width: 180, height: 180 });
+function sendWhatsApp() {
+  const telefono = "51936019965"; // Número destino
+  const nombre = document.getElementById("nombreInvitado").value.trim();
+  const tipo = document.getElementById("tipoMensaje").value;
 
-function sendWhatsApp(event) {
-  event.preventDefault();
+  let mensaje = "";
 
-  // Tu número de WhatsApp (sin + ni guiones, solo con el código de país)
-  const telefono = "51936019965"; // Perú (+51)
-  const mensaje = 'Hola, confirmo mi asistencia a la boda!';
+  switch(tipo) {
+    case "formal":
+      mensaje = "Hola, confirmo mi asistencia a la boda.";
+      if (nombre) {
+        mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda.`;
+      }
+      break;
+
+    case "carinoso":
+      mensaje = "Hola, confirmo mi asistencia a la boda. ¡Gracias por contar conmigo en este día tan especial!";
+      if (nombre) {
+        mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda. ¡Gracias por contar conmigo en este día tan especial!`;
+      }
+      break;
+
+    case "comico":
+      mensaje = "¡Hola! Confirmo mi asistencia a la boda… no pienso perderme la fiesta gratis 😜🍾";
+      if (nombre) {
+        mensaje = `¡Hola! Soy ${nombre}, confirmo mi asistencia a la boda. Prometo portarme bien… al menos hasta que empiece la fiesta jeje`;
+      }
+      break;
+  }
 
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, "_blank");

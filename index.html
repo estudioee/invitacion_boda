@@ -1,31 +1,159 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Boda Fernanda & Roberto</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<html><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fernanda &amp; Roberto Boda</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-</head>
-<div>
-  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
-  <header class="hero d-flex align-items-center justify-content-center text-center">
-    <div class="container position-relative">
-      <img class="photo" src="img/hero.jpeg" alt="Fernanda y Roberto">
-      <h1 class="names mt-3">Fernanda & Roberto</h1>
-       <!-- Anillos dorados (decoración de boda) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #800020;
+            --secondary-color: #F8E8E8;
+            --accent-color: #DAA520;
+            --background-color: #FCF9F6;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --light-gold: #fceabb;   /* ejemplo dorado claro */
+                --dark-gold: #f8b500; 
+                --wine-red: #7b1e3c; 
+        }
+        .rings {
+        right: 12px;
+        top: 12px;
+        pointer-events: none;
+        display: inline-grid;
+        }
+        .rings-svg {
+        width: 90px;
+        height: auto;
+        animation: ringFloat 6s ease-in-out infinite;
+        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+        }
+        @keyframes ringFloat {
+        0%, 100% { transform: translateY(0px) rotate(-3deg); }
+        50%      { transform: translateY(-6px) rotate(2deg); }
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .font-great-vibes {
+            font-family: 'Great Vibes', cursive;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .floral-divider {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="50" viewBox="0 0 300 50"><path d="M0,25 C50,0,100,50,150,25 S250,0,300,25" fill="none" stroke="%23DAA520" stroke-width="1.5"/><path d="M140 15 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0" fill="%23800020"/><path d="M160 15 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0" fill="%23800020"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 50px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10;
+        }
+        .top-left {
+            top: 15px;
+            left: 15px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 C25 25, 25 0, 50 0' fill='none' stroke='%23DAA520' stroke-width='2'/%3E%3Cpath d='M0 70 C35 35, 35 0, 70 0' fill='none' stroke='%23DAA520' stroke-width='1.5'/%3E%3Cpath d='M30 30 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0' fill='%23800020'/%3E%3C/svg%3E");
+        }
+        .top-right {
+            top: 15px;
+            right: 15px;
+            transform: scaleX(-1);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 C25 25, 25 0, 50 0' fill='none' stroke='%23DAA520' stroke-width='2'/%3E%3Cpath d='M0 70 C35 35, 35 0, 70 0' fill='none' stroke='%23DAA520' stroke-width='1.5'/%3E%3Cpath d='M30 30 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0' fill='%23800020'/%3E%3C/svg%3E");
+        }
+        .bottom-left {
+            bottom: 15px;
+            left: 15px;
+            transform: scaleY(-1);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 C25 25, 25 0, 50 0' fill='none' stroke='%23DAA520' stroke-width='2'/%3E%3Cpath d='M0 70 C35 35, 35 0, 70 0' fill='none' stroke='%23DAA520' stroke-width='1.5'/%3E%3Cpath d='M30 30 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0' fill='%23800020'/%3E%3C/svg%3E");
+        }
+        .bottom-right {
+            bottom: 15px;
+            right: 15px;
+            transform: scale(-1, -1);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 C25 25, 25 0, 50 0' fill='none' stroke='%23DAA520' stroke-width='2'/%3E%3Cpath d='M0 70 C35 35, 35 0, 70 0' fill='none' stroke='%23DAA520' stroke-width='1.5'/%3E%3Cpath d='M30 30 a5,5 0 1,1 -10,0 a5,5 0 1,1 10,0' fill='%23800020'/%3E%3C/svg%3E");
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-animation {
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); opacity: 0; }
+            25% { opacity: 1; }
+            50% { transform: translateY(-30px); }
+            75% { opacity: 1; }
+            100% { transform: translateY(-60px); opacity: 0; }
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(128, 0, 32, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        .floral-top{
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            display: block;       /* aseguro que se comporte como bloque */
+                margin-top: -192px;
+                margin-bottom: -144px;
+            object-fit: cover;
+            position: relative;
+            pointer-events: none;
+            }
+            
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<canvas id="hearts-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+<body class="bg-[var(--background-color)] text-[var(--text-primary)] relative min-h-screen overflow-x-hidden">
+<div class="corner-decoration top-left"></div>
+<div class="corner-decoration top-right"></div>
+<div class="corner-decoration bottom-left"></div>
+<div class="corner-decoration bottom-right"></div>
+<div class="relative z-0">
+<span class="floating-heart material-symbols-outlined" style="left: 10%; animation-delay: 0s;">favorite</span>
+<span class="floating-heart material-symbols-outlined" style="left: 20%; animation-delay: 2s;">favorite</span>
+<span class="floating-heart material-symbols-outlined" style="left: 80%; animation-delay: 1s;">favorite</span>
+<span class="floating-heart material-symbols-outlined" style="left: 90%; animation-delay: 4s;">favorite</span>
+<span class="floating-heart material-symbols-outlined" style="left: 50%; animation-delay: 3s;">favorite</span>
+</div>
+<main class="container mx-auto px-6 py-12 max-w-lg relative z-10">
+<section class="text-center mb-12">
+<div class="photo w-full h-[28rem] bg-[50%_82%] bg-cover rounded-2xl shadow-xl mb-6" style="background-image: url('img/hero.jpeg');"></div>
+<h1 class="text-7xl font-great-vibes text-[var(--primary-color)]">Fernanda &amp; Roberto</h1>
 <div class="rings" aria-hidden="true">
   <svg class="rings-svg" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stop-color="#F8E6A0"/>
-        <stop offset="50%" stop-color="#D4AF37"/>
-        <stop offset="100%" stop-color="#B4911C"/>
+        <stop offset="50%" stop-color="#e1b111"/>
+        <stop offset="100%" stop-color="#e1b111"/>
       </linearGradient>
     </defs>
     <!-- Aro izquierdo -->
@@ -34,151 +162,131 @@
     <circle cx="70" cy="35" r="22" fill="none" stroke="url(#goldGrad)" stroke-width="6"/>
   </svg>
 </div>
-      <p class="lead">
-        Estamos felices de unir nuestras vidas y queremos que seas parte de esta ocasión tan especial.
-        ¡Por eso queremos invitarte a que nos acompañes a celebrar!
-      </p>
-      <button id="audioBtn" class="audio-ctrl reveald">
-        <i class="fa-solid fa-play"></i> <span>Escucha nuestra canción</span>
-      </button>
-      <audio id="song" preload="auto">
-        <source src="audio/cancion.wav" type="audio/wav">
-      </audio>
-    
-    </div>
-   
-  </header>
-  <section class="section">
-    <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
-    <div class="calendar-wrap reveald">
-      <h2 class="romantic">Nuestra fecha especial</h2>
-      <h2 class="calendar-title">Septiembre 2025</h2>
-      <table class="cal" aria-label="Calendario Septiembre 2025">
-        <thead>
-          <tr><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th><th>D</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="day">1</span></td><td><span class="day">2</span></td><td><span class="day">3</span></td><td><span class="day">4</span></td><td><span class="day">5</span></td><td><span class="day">6</span></td><td><span class="day">7</span></td></tr>
-          <tr><td><span class="day">8</span></td><td><span class="day">9</span></td><td><span class="day">10</span></td><td><span class="day">11</span></td><td><span class="day">12</span></td><td><span class="day">13</span></td><td><span class="day">14</span></td></tr>
-          <tr><td><span class="day">15</span></td><td><span class="day">16</span></td><td><span class="day">17</span></td><td><span class="day">18</span></td><td><span class="day">19</span></td><td><span class="day">20</span></td><td><span class="day">21</span></td></tr>
-          <tr><td><span class="day">22</span></td><td><span class="day">23</span></td><td><span class="day">24</span></td><td><span class="day">25</span></td><td><span class="day">26</span></td>
-              <td><span class="day marked" aria-label="27 de septiembre, fecha del evento">27</span></td><td><span class="day">28</span></td></tr>
-          <tr><td><span class="day">29</span></td><td><span class="day">30</span></td><td></td><td></td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <p class="text-wine fw-bold mb-2">Falta muy poco para nuestro gran día</p>
-      <div id="countdown" class="countdown" aria-live="polite">Cargando cuenta regresiva…</div>
-    </div>
-    <img src="img/floral_divider.webp" class="floral-top-c" alt="Detalle floral">
-  </section>
-  <div class="hero-c d-flex align-items-center justify-content-center text-center" >
-  <section class="section-info pt-0">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <div class="info-card reveal ">
-            <div class="icon"><i class="fa-solid fa-champagne-glasses"></i></div>
-            <h3 class="mb-1">Recepción</h3>
-            <p class="mb-3">Av. El Sol de Naranjal, Lima 15112</p>
-            <a class="btn btn-wine" target="_blank" href="https://maps.app.goo.gl/J9aQUAACiiqu7Wms8">Ver ubicación</a>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-          <div class="info-card reveal ">
-            <div class="icon"><i class="fa-solid fa-user-tie"></i> &nbsp; <i class="fa-solid fa-person-dress"></i></div>
-            <h3 class="mb-1">Código de vestimenta</h3>
-            <p>Su mejor outfit formal</p>
-          </div>
-        </div>
-      
-        <div class="col-12 col-md-6">
-          <div class="info-card reveal">
-            <h3 class="mb-2 text-wine">NOTA ESPECIAL</h3>
-            <p>Amamos a los niños, pero por razones de seguridad, nuestra boda será solo para adultos.</p>
-          </div>
-        </div>
-        <div class="col-12 col-md-6">
-        <div class="info-card reveal ">
-          <h2 class="mb-3 text-wine">Confirma tu asistencia</h2>
-          <form onsubmit="sendWhatsApp(event)">
-            <button type="submit" class="btn btn-wine">
-              <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp 💌
-            </button>
-          </form>
-        </div>
-        </div>
-        
-        
-      </div>
-    </div>
-  </section>
- 
-  
-  </div>
-   <img src="img/floral_divider1.webp" class="floral" alt="Detalle floral">
-  <section class="section pt-0">
-  <div class="info-card reveald">
-    <p class="quote">
-      “Dos almas pero un solo corazón.”
-    </p>
-  </div>
-</section>
- <img src="img/floral_divider1.webp" class="floral" alt="Detalle floral">
-<div class="hero-c   text-center" >
-<section class="section pt-0 ">
-  
-          <div class="info-card_re reveal">
-            <h2 class="section-title">Detalles para regalos</h2>
-              <p class="mb-4">Tu presencia es lo más importante para nosotros ❤️, pero si deseas apoyarnos con un detalle, aquí te dejamos nuestros datos:</p>
-              
-              <div class="gift-info">
-                <div class="gift-card">
-                  <h3>Yape</h3>
-                  <p><strong>+51 936 019 965</strong></p>
-                  <!-- Opcional: QR del Yape -->
-                  <img src="qr-yape.webp" alt="QR Yape" class="gift-qr">
-                </div>
-
-                <div class="gift-card">
-                  <h3>CCI</h3>
-                  <p><strong>002 1234 5678 9012 3456 78</strong></p>
-                </div>
-              </div>
-          </div>
-        
-</section>
-
-  <section class="section pt-0">
-    <div class="info-card reveald">
-      <h3 class="romantic">Momentos juntos</h3>
-      <div class="d-flex flex-wrap justify-content-center">
-        <img src="img/gallery1.jpg" alt="foto 1">
-        <img src="img/gallery2.jpg" alt="foto 2">
-        <img src="img/gallery3.jpg" alt="foto 3">
-      </div>
-    </div>
-  </section>
 </div>
-  <section id="regalos" class="section text-center">
-  
+<p class="text-lg text-[var(--text-secondary)] leading-relaxed max-w-md mx-auto mb-6">Con nuestros corazones llenos de alegría, los invitamos a compartir nuestra celebración de amor mientras nos unimos en matrimonio.</p>
+
+<button id="audioBtn" class="btn btn-wine text-white py-3 px-6 rounded-full flex items-center justify-center space-x-2 mx-auto pulse-animation shadow-md hover:shadow-lg transform hover:scale-105">
+  <span class="material-symbols-outlined">music_note</span>
+  <span>Escucha nuestra canción</span>
+</button>
+<audio id="song" preload="auto">
+    <source src="audio/cancion.wav" type="audio/wav">
+ </audio>
 </section>
-
-  <footer>
-    <p>¡ESPERAMOS CONTAR CON SU PRESENCIA!<br>Muchas gracias</p>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-  <script src="script.js"></script>
-  <!-- Esquinas florales (SVG inline, decorativas) -->
-<svg class="floral-deco floral-top-left" viewBox="0 0 120 120" aria-hidden="true">
-  <path d="M5,60 C20,20 60,10 110,5 C70,25 40,60 20,115 Z" fill="#F8E8E8" stroke="#D4AF37" stroke-width="1"/>
-</svg>
-
-<svg class="floral-deco floral-bottom-right" viewBox="0 0 120 120" aria-hidden="true">
-  <path d="M5,60 C20,20 60,10 110,5 C70,25 40,60 20,115 Z" fill="#F8E8E8" stroke="#D4AF37" stroke-width="1"/>
-</svg>
-
-</body>
-<img src="img/floral_corner.png" alt="decoración floral" class="floral-deco floral-top-left">
-<img src="img/floral_corner.png" alt="decoración floral" class="floral-deco floral-bottom-right">
-
-</html>
+ <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
+<section class="text-center mb-12">
+<p class="text-xl text-[var(--primary-color)] font-playfair italic mb-4">Falta muy poco para nuestro gran día</p>
+<div class="bg-[var(--secondary-color)] bg-opacity-60 p-6 shadow-lg rounded-2xl border border-[var(--accent-color)] mb-8">
+<h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] text-center mb-6">Septiembre 2025</h2>
+<div class="grid grid-cols-7 gap-1 text-center text-sm mb-4">
+<div class="font-bold text-[var(--primary-color)]">Do</div>
+<div class="font-bold text-[var(--primary-color)]">Lu</div>
+<div class="font-bold text-[var(--primary-color)]">Ma</div>
+<div class="font-bold text-[var(--primary-color)]">Mi</div>
+<div class="font-bold text-[var(--primary-color)]">Ju</div>
+<div class="font-bold text-[var(--primary-color)]">Vi</div>
+<div class="font-bold text-[var(--primary-color)]">Sá</div>
+<div class="text-transparent">.</div>
+<div class="text-[var(--text-secondary)]">1</div><div class="text-[var(--text-secondary)]">2</div><div class="text-[var(--text-secondary)]">3</div><div class="text-[var(--text-secondary)]">4</div><div class="text-[var(--text-secondary)]">5</div><div class="text-[var(--text-secondary)]">6</div>
+<div class="text-[var(--text-secondary)]">7</div><div class="text-[var(--text-secondary)]">8</div><div class="text-[var(--text-secondary)]">9</div><div class="text-[var(--text-secondary)]">10</div><div class="text-[var(--text-secondary)]">11</div><div class="text-[var(--text-secondary)]">12</div><div class="text-[var(--text-secondary)]">13</div>
+<div class="text-[var(--text-secondary)]">14</div><div class="text-[var(--text-secondary)]">15</div><div class="text-[var(--text-secondary)]">16</div><div class="text-[var(--text-secondary)]">17</div><div class="text-[var(--text-secondary)]">18</div><div class="text-[var(--text-secondary)]">19</div><div class="text-[var(--text-secondary)]">20</div>
+<div class="text-[var(--text-secondary)]">21</div><div class="text-[var(--text-secondary)]">22</div><div class="text-[var(--text-secondary)]">23</div><div class="text-[var(--text-secondary)]">24</div><div class="text-[var(--text-secondary)]">25</div><div class="text-[var(--text-secondary)]">26</div>
+<div class="relative flex items-center justify-center">
+<div class="bg-[var(--primary-color)] text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto relative z-10">27</div>
+<span class="material-symbols-outlined text-[var(--primary-color)] absolute text-4xl -top-1.5 -left-1.5 opacity-80">favorite</span>
+</div>
+<div class="text-[var(--text-secondary)]">28</div><div class="text-[var(--text-secondary)]">29</div><div class="text-[var(--text-secondary)]">30</div>
+</div>
+<div class="grid gap-2 text-center mt-6">
+ <div id="countdown" class="countdown" aria-live="polite">Cargando cuenta regresiva…</div>
+</div>
+</div>
+</section>
+<section class="mb-12">
+<h2 class="text-6xl font-great-vibes text-[var(--primary-color)] text-center mb-8">Estás invitado</h2>
+<div class="space-y-6">
+<div class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] transform hover:scale-[1.02] transition-transform duration-300">
+<div class="flex items-center mb-4">
+<span class="material-symbols-outlined text-[var(--dark-gold)] text-4xl mr-4">celebration</span>
+<div>
+<h3 class="text-2xl font-playfair font-bold text-[var(--primary-color)]">Recepción</h3>
+<p class="text-base text-[var(--text-secondary)]">Av. El Sol de Naranjal, Lima 15112</p>
+</div>
+</div>
+<a 
+  href="https://maps.app.goo.gl/J9aQUAACiiqu7Wms8" 
+  target="_blank"
+  class="block w-full text-center bg-gradient-to-br from-[var(--light-gold)] to-[var(--dark-gold)] text-[var(--wine-red)] font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-105 text-lg"
+>
+  Ver ubicación
+</a></div>
+<div class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] transform hover:scale-[1.02] transition-transform duration-300">
+<div class="flex items-center mb-2">
+<div class="flex mr-4 text-[var(--dark-gold)] text-4xl"><span class="material-symbols-outlined">styler</span><span class="material-symbols-outlined">styler</span></div>
+<div>
+<h3 class="text-2xl font-playfair font-bold text-[var(--primary-color)]">Código de Vestimenta</h3>
+<p class="text-base text-[var(--text-secondary)]">“Vístete de gala, la ocasión lo merece ✨”</p>
+</div>
+</div>
+</div>
+<div class="bg-[var(--secondary-color)] p-4 shadow-lg rounded-2xl border border-[var(--accent-color)] text-center">
+<p class="text-base text-[var(--primary-color)] font-semibold">Evento exclusivo para adultos.</p>
+</div>
+</div>
+</section>
+<section class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] my-12 text-center">
+<h2 class="text-3xl font-playfair font-bold text-[var(--primary-color)] mb-4">Confirma tu Asistencia</h2>
+<p class="text-center text-[var(--text-secondary)] mb-6">Por favor, confirma antes del 20 de Septiembre, 2025</p>
+<input 
+    type="text" 
+    id="nombreInvitado" 
+    placeholder="Escribe tu nombre aquí..." 
+    class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center"
+/> 
+<label for="tipoMensaje" class="block mb-2 text-[var(--primary-color)] font-semibold">
+  Elige el estilo de tu mensaje
+</label>
+<!-- Select para elegir el estilo -->
+  <select id="tipoMensaje" class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center">
+    <option value="formal">Formal 📝</option>
+    <option value="carinoso">Cariñoso ❤️</option>
+    <option value="comico">Chistosito 😂</option>
+  </select>       
+<button type="button" class=" bg-gradient-to-br from-[var(--light-gold)] to-[var(--dark-gold)] text-[var(--wine-red)] font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg" onclick="sendWhatsApp()">
+  <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp 💌
+</button>
+</section>
+ <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
+<section class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] mb-12 text-center">
+<h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] mb-4">Sugerencia de Regalo</h2>
+<p class="text-lg text-[var(--text-secondary)] leading-relaxed mb-6">Tu presencia es nuestro mayor regalo. Pero si deseas obsequiarnos algo, una contribución para nuestro futuro será muy apreciada.</p>
+<div class="flex items-center justify-center my-4">
+<img alt="QR Code for Yape" class="w-[13rem] h-[20rem] rounded-lg shadow-md" src="img/yape.jpeg"/>
+</div>
+<p class="text-lg text-[var(--text-secondary)]">Yape: 936 019 965</p>
+<p class="text-lg text-[var(--text-secondary)]">Yape: 997 514 026</p>
+<p class="text-lg text-[var(--text-secondary)]">CCI: 00219119529397904255</p>
+</section>
+<section class="my-12">
+<h2 class="text-6xl font-great-vibes text-[var(--primary-color)] text-center mb-8">Momentos Juntos</h2>
+<div class="grid grid-cols-2 gap-4">
+<img alt="Couple photo 1" class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" src="img/gallery1.jpg"/>
+<img alt="Couple photo 2" class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" src="img/gallery2.jpg"/>
+</div>
+</section>
+<section class="my-16 text-center">
+<div class="flex justify-center items-center mb-4 text-[var(--primary-color)] relative h-20">
+<span class="material-symbols-outlined text-6xl absolute left-1/2 -translate-x-8 transform -rotate-12">favorite</span>
+<span class="material-symbols-outlined text-6xl absolute left-1/2 translate-x-2 transform rotate-12">favorite</span>
+</div>
+<p class="text-2xl font-playfair text-[var(--primary-color)] italic">"Contigo, el amor se celebra todos los días."</p>
+</section   >
+<footer class="text-center mt-12 mb-8">
+<p class="text-4xl font-great-vibes text-[var(--primary-color)]">Con amor, Fernanda &amp; Roberto</p>
+<p class="text-lg text-[var(--text-secondary)] mt-2">Gracias por ser parte de nuestra historia.</p>
+</footer>
+</main>
+ <script src="script.js"defer></script>
+</body></html>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+ 
