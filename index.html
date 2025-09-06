@@ -271,9 +271,22 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 <section class="my-12">
 <h2 class="text-6xl font-great-vibes text-[var(--primary-color)] text-center mb-8">Momentos Juntos</h2>
 <div class="grid grid-cols-2 gap-4">
-<img alt="Couple photo 1" class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" src="img/gallery1.jpg"/>
-<img alt="Couple photo 2" class="w-full h-auto object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" src="img/gallery2.jpg"/>
+  <!-- Primera fila con 2 fotos -->
+  <img alt="Couple photo 1" 
+       class="w-full h-80 object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" 
+       src="img/gallery1.jpg"/>
+
+  <img alt="Couple photo 2" 
+       class="w-full h-80 object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300" 
+       src="img/gallery2.jpeg"/>
+
+  <!-- Segunda fila con 1 foto centrada -->
+  <img alt="Couple photo 3" 
+       class="w-full h-80 object-cover rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 col-span-2 md:col-span-1 md:col-start-1 md:col-end-3 md:w-1/2 md:mx-auto" 
+       src="img/gallery3.jpg"/>
 </div>
+
+
 </section>
 <section class="my-16 text-center">
 <div class="flex justify-center items-center mb-4 text-[var(--primary-color)] relative h-20">
