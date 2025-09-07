@@ -176,33 +176,82 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 </section>
  <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
 <section class="text-center mb-12">
-<p class="text-xl text-[var(--primary-color)] font-playfair italic mb-4">Falta muy poco para nuestro gran día</p>
-<div class="bg-[var(--secondary-color)] bg-opacity-60 p-6 shadow-lg rounded-2xl border border-[var(--accent-color)] mb-8">
-<h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] text-center mb-6">Septiembre 2025</h2>
-<div class="grid grid-cols-7 gap-1 text-center text-sm mb-4">
-<div class="font-bold text-[var(--primary-color)]">Do</div>
-<div class="font-bold text-[var(--primary-color)]">Lu</div>
-<div class="font-bold text-[var(--primary-color)]">Ma</div>
-<div class="font-bold text-[var(--primary-color)]">Mi</div>
-<div class="font-bold text-[var(--primary-color)]">Ju</div>
-<div class="font-bold text-[var(--primary-color)]">Vi</div>
-<div class="font-bold text-[var(--primary-color)]">Sá</div>
-<div class="text-transparent">.</div>
-<div class="text-[var(--text-secondary)]">1</div><div class="text-[var(--text-secondary)]">2</div><div class="text-[var(--text-secondary)]">3</div><div class="text-[var(--text-secondary)]">4</div><div class="text-[var(--text-secondary)]">5</div><div class="text-[var(--text-secondary)]">6</div>
-<div class="text-[var(--text-secondary)]">7</div><div class="text-[var(--text-secondary)]">8</div><div class="text-[var(--text-secondary)]">9</div><div class="text-[var(--text-secondary)]">10</div><div class="text-[var(--text-secondary)]">11</div><div class="text-[var(--text-secondary)]">12</div><div class="text-[var(--text-secondary)]">13</div>
-<div class="text-[var(--text-secondary)]">14</div><div class="text-[var(--text-secondary)]">15</div><div class="text-[var(--text-secondary)]">16</div><div class="text-[var(--text-secondary)]">17</div><div class="text-[var(--text-secondary)]">18</div><div class="text-[var(--text-secondary)]">19</div><div class="text-[var(--text-secondary)]">20</div>
-<div class="text-[var(--text-secondary)]">21</div><div class="text-[var(--text-secondary)]">22</div><div class="text-[var(--text-secondary)]">23</div><div class="text-[var(--text-secondary)]">24</div><div class="text-[var(--text-secondary)]">25</div><div class="text-[var(--text-secondary)]">26</div>
-<div class="relative flex items-center justify-center">
-<div class="bg-[var(--primary-color)] text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto relative z-10">27</div>
-<span class="material-symbols-outlined text-[var(--primary-color)] absolute text-4xl -top-1.5 -left-1.5 opacity-80">favorite</span>
-</div>
-<div class="text-[var(--text-secondary)]">28</div><div class="text-[var(--text-secondary)]">29</div><div class="text-[var(--text-secondary)]">30</div>
-</div>
-<div class="grid gap-2 text-center mt-6">
- <div id="countdown" class="countdown" aria-live="polite">Cargando cuenta regresiva…</div>
-</div>
-</div>
+  <p class="text-xl text-[var(--primary-color)] font-playfair italic mb-4">
+    Falta muy poco para nuestro gran día
+  </p>
+  <div class="bg-[var(--secondary-color)] bg-opacity-60 p-6 shadow-lg rounded-2xl border border-[var(--accent-color)] mb-8">
+    <h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] text-center mb-6">
+      Septiembre 2025
+    </h2>
+
+    <!-- Calendario -->
+    <div class="grid grid-cols-7 gap-1 text-center text-sm mb-4">
+      <div class="font-bold text-[var(--primary-color)]">Do</div>
+      <div class="font-bold text-[var(--primary-color)]">Lu</div>
+      <div class="font-bold text-[var(--primary-color)]">Ma</div>
+      <div class="font-bold text-[var(--primary-color)]">Mi</div>
+      <div class="font-bold text-[var(--primary-color)]">Ju</div>
+      <div class="font-bold text-[var(--primary-color)]">Vi</div>
+      <div class="font-bold text-[var(--primary-color)]">Sá</div>
+
+      <div class="text-transparent">.</div>
+      <div class="text-[var(--text-secondary)]">1</div>
+      <div class="text-[var(--text-secondary)]">2</div>
+      <div class="text-[var(--text-secondary)]">3</div>
+      <div class="text-[var(--text-secondary)]">4</div>
+      <div class="text-[var(--text-secondary)]">5</div>
+      <div class="text-[var(--text-secondary)]">6</div>
+      <div class="text-[var(--text-secondary)]">7</div>
+      <div class="text-[var(--text-secondary)]">8</div>
+      <div class="text-[var(--text-secondary)]">9</div>
+      <div class="text-[var(--text-secondary)]">10</div>
+      <div class="text-[var(--text-secondary)]">11</div>
+      <div class="text-[var(--text-secondary)]">12</div>
+      <div class="text-[var(--text-secondary)]">13</div>
+      <div class="text-[var(--text-secondary)]">14</div>
+      <div class="text-[var(--text-secondary)]">15</div>
+      <div class="text-[var(--text-secondary)]">16</div>
+      <div class="text-[var(--text-secondary)]">17</div>
+      <div class="text-[var(--text-secondary)]">18</div>
+      <div class="text-[var(--text-secondary)]">19</div>
+      <div class="text-[var(--text-secondary)]">20</div>
+      <div class="text-[var(--text-secondary)]">21</div>
+      <div class="text-[var(--text-secondary)]">22</div>
+      <div class="text-[var(--text-secondary)]">23</div>
+      <div class="text-[var(--text-secondary)]">24</div>
+      <div class="text-[var(--text-secondary)]">25</div>
+      <div class="text-[var(--text-secondary)]">26</div>
+      <div class="relative flex items-center justify-center">
+        <div
+          class="bg-[var(--primary-color)] text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto relative z-10"
+        >
+          27
+        </div>
+        <span
+          class="material-symbols-outlined text-[var(--primary-color)] absolute text-4xl -top-1.5 -left-1.5 opacity-80"
+          >favorite</span
+        >
+      </div>
+      <div class="text-[var(--text-secondary)]">28</div>
+      <div class="text-[var(--text-secondary)]">29</div>
+      <div class="text-[var(--text-secondary)]">30</div>
+    </div>
+
+    <!-- Frase de la hora con ícono -->
+    <p class="text-xl font-playfair italic text-[var(--primary-color)] mt-4 flex items-center justify-center gap-2">
+      <span class="text-2xl">🕐</span>
+      Empieza a la 1:00 PM, ¡no tardes!
+    </p>
+
+    <!-- Countdown -->
+    <div class="grid gap-2 text-center mt-6">
+      <div id="countdown" class="countdown" aria-live="polite">
+        Cargando cuenta regresiva…
+      </div>
+    </div>
+  </div>
 </section>
+
 <section class="mb-12">
 <h2 class="text-6xl font-great-vibes text-[var(--primary-color)] text-center mb-8">Estás invitado!</h2>
 <div class="space-y-6">
