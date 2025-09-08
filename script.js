@@ -153,10 +153,27 @@ function animate(){
 }
 animate();
 
+function checkNombre() {
+  const nombre = document.getElementById("nombreInvitado").value.trim();
+  const button = document.getElementById("confirmButton");
+  button.disabled = !nombre; // Desactiva el botón si no hay nombre
+}
+
+function checkNombre() {
+  const nombre = document.getElementById("nombreInvitado").value.trim();
+  const button = document.getElementById("confirmButton");
+  button.disabled = !nombre; // Desactiva el botón si no hay nombre
+}
+
 function sendWhatsApp() {
   const telefono = "51936019965"; // Número destino
   const nombre = document.getElementById("nombreInvitado").value.trim();
   const tipo = document.getElementById("tipoMensaje").value;
+
+if (!nombre) {
+    alert("Por favor, ingresa tu nombre antes de continuar.");
+    return;
+  }
 
   let mensaje = "";
 

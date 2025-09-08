@@ -289,16 +289,16 @@ main {
   }
 }
  @media (max-width: 768px) {
-    .decoracion-floral {
+    .floral-top {
       margin-top: -25px;
       margin-bottom: -25px;
     }
   }
 
   @media (max-width: 480px) {
-    .decoracion-floral {
-      margin-top: -15px;
-      margin-bottom: -15px;
+    .floral-top {
+      margin-top: -172px !important;
+        margin-bottom: -131px !important;
     }
   }
 .info-card, .card {

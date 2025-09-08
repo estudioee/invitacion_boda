@@ -12,6 +12,8 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+
 <style type="text/tailwindcss">
         :root {
             --primary-color: #800020;
@@ -285,38 +287,62 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 </div>
 </section>
 <section class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] my-12 text-center">
-<h2 class="text-3xl font-playfair font-bold text-[var(--primary-color)] mb-4">Confirma tu Asistencia</h2>
-<p class="text-center text-[var(--text-secondary)] mb-6">Por favor, confirma antes del 20 de Septiembre, 2025</p>
-<input 
+  <h2 class="text-3xl font-playfair font-bold text-[var(--primary-color)] mb-4">Confirma tu Asistencia</h2>
+  <p class="text-center text-[var(--text-secondary)] mb-6">Por favor, confirma antes del 20 de Septiembre, 2025</p>
+
+  <input 
     type="text" 
     id="nombreInvitado" 
-    placeholder="Escribe tu nombre aquí..." 
+    placeholder="Escribe tu nombre y apellido aquí..." 
     class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center"
-/> 
-<label for="tipoMensaje" class="block mb-2 text-[var(--primary-color)] font-semibold">
-  Elige el estilo de tu mensaje
-</label>
-<!-- Select para elegir el estilo -->
+    oninput="checkNombre()"
+  /> 
+
+  <label for="tipoMensaje" class="block mb-2 text-[var(--primary-color)] font-semibold">
+    Elige el estilo de tu mensaje
+  </label>
   <select id="tipoMensaje" class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center">
     <option value="formal">Formal 📝</option>
     <option value="carinoso">Cariñoso ❤️</option>
     <option value="comico">Chistosito 😂</option>
   </select>       
-<button type="button" class=" bg-gradient-to-br from-[var(--light-gold)] to-[var(--dark-gold)] text-[var(--wine-red)] font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg" onclick="sendWhatsApp()">
-  <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp 💌
-</button>
+
+  <button 
+    id="confirmButton"
+    type="button" 
+    class=" bg-gradient-to-br from-[var(--light-gold)] to-[var(--dark-gold)] text-[var(--wine-red)] font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-lg disabled:opacity-50"
+    onclick="sendWhatsApp()"
+    disabled
+  >
+    <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp 💌
+  </button>
 </section>
  <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
 <section class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] mb-12 text-center">
-<h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] mb-4">Sugerencia de Regalo</h2>
-<p class="text-lg text-[var(--text-secondary)] leading-relaxed mb-6">Tu presencia es nuestro mayor regalo. Pero si deseas obsequiarnos algo, una contribución para nuestro futuro será muy apreciada.</p>
-<div class="flex items-center justify-center my-4">
-<img alt="QR Code for Yape" class="w-[13rem] h-[20rem] rounded-lg shadow-md" src="img/yape.jpeg"/>
-</div>
-<p class="text-lg text-[var(--text-secondary)]">Yape: 936 019 965</p>
-<p class="text-lg text-[var(--text-secondary)]">Yape: 997 514 026</p>
-<p class="text-lg text-[var(--text-secondary)]">CCI: 00219119529397904255</p>
+  <h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] mb-4">Sugerencia de Regalo</h2>
+  <p class="text-lg text-[var(--text-secondary)] leading-relaxed mb-6">
+    Tu presencia es nuestro mayor regalo. Pero si deseas obsequiarnos algo, una contribución para nuestro futuro será muy apreciada.
+  </p>
+
+  <!-- Imagen QR -->
+  <div class="flex items-center justify-center my-4">
+    <img alt="QR Code for Yape" class="w-[13rem] h-[20rem] rounded-lg shadow-md" src="img/yape.jpeg"/>
+  </div>
+
+  <!-- Botones Yape -->
+  <div class="flex flex-col gap-4 items-center">
+    <a href="yape://pay?phone=936019965" class="px-6 py-3 bg-[var(--primary-color)] text-white rounded-xl shadow-md hover:bg-[var(--secondary-color)] transition">
+      Yapear a 936 019 965
+    </a>
+    <a href="yape://pay?phone=997514026" class="px-6 py-3 bg-[var(--primary-color)] text-white rounded-xl shadow-md hover:bg-[var(--secondary-color)] transition">
+      Yapear a 997 514 026
+    </a>
+  </div>
+
+  <!-- CCI -->
+  <p class="text-lg text-[var(--text-secondary)] mt-6">CCI: <strong>00219119529397904255</strong></p>
 </section>
+
 <section class="my-12">
 <h2 class="text-6xl font-great-vibes text-[var(--primary-color)] text-center mb-8">Momentos Juntos</h2>
 <div class="grid grid-cols-2 gap-4">
@@ -349,6 +375,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
 <p class="text-lg text-[var(--text-secondary)] mt-2">Gracias por ser parte de nuestra historia.</p>
 </footer>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.36.0/lib/msal-browser.min.js" defer></script>
  <script src="script.js"defer></script>
 </body></html>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
