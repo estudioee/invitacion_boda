@@ -165,42 +165,69 @@ function checkNombre() {
   button.disabled = !nombre; // Desactiva el botón si no hay nombre
 }
 
+function generarCamposAcompanantes() {
+  const cantidad = parseInt(document.getElementById("acompanantes").value);
+  const contenedor = document.getElementById("listaAcompanantes");
+
+  contenedor.innerHTML = ""; // limpiar los anteriores
+
+  if (cantidad > 0) {
+    for (let i = 1; i <= cantidad; i++) {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = `Nombre y apellidos`;
+      input.className = "border border-gray-300 rounded-lg px-4 py-2 mb-2 w-full max-w-md text-center";
+      input.id = `acompanante${i}`;
+      contenedor.appendChild(input);
+    }
+  }
+}
+
 function sendWhatsApp() {
   const telefono = "51936019965"; // Número destino
   const nombre = document.getElementById("nombreInvitado").value.trim();
   const tipo = document.getElementById("tipoMensaje").value;
+  const cantidad = parseInt(document.getElementById("acompanantes").value) || 0;
 
-if (!nombre) {
+  if (!nombre) {
     alert("Por favor, ingresa tu nombre antes de continuar.");
     return;
   }
 
-  let mensaje = "";
+  // Construimos lista de acompañantes
+  let nombresAcompanantes = [];
+  for (let i = 1; i <= cantidad; i++) {
+    const valor = document.getElementById(`acompanante${i}`).value.trim();
+    if (valor) nombresAcompanantes.push(valor);
+  }
 
-  switch(tipo) {
+  let textoAcompanantes = "";
+  if (cantidad > 0) {
+    if (nombresAcompanantes.length > 0) {
+      textoAcompanantes = ` con ${cantidad} acompañante${cantidad > 1 ? "s" : ""}: ${nombresAcompanantes.join(", ")}`;
+    } else {
+      textoAcompanantes = ` con ${cantidad} acompañante${cantidad > 1 ? "s" : ""}`;
+    }
+  }
+
+  // Mensajes personalizados
+  let mensaje = "";
+  switch (tipo) {
     case "formal":
-      mensaje = "Hola, confirmo mi asistencia a la boda.";
-      if (nombre) {
-        mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda.`;
-      }
+      mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda${textoAcompanantes}.`;
       break;
 
     case "carinoso":
-      mensaje = "Hola, confirmo mi asistencia a la boda. ¡Gracias por contar conmigo en este día tan especial!";
-      if (nombre) {
-        mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda. ¡Gracias por contar conmigo en este día tan especial!`;
-      }
+      mensaje = `Hola, soy ${nombre}, confirmo mi asistencia a la boda${textoAcompanantes}. ¡Gracias por contar conmigo en este día tan especial!`;
       break;
 
     case "comico":
-      mensaje = "¡Hola! Confirmo mi asistencia a la boda… no pienso perderme la fiesta gratis 😜🍾";
-      if (nombre) {
-        mensaje = `¡Hola! Soy ${nombre}, confirmo mi asistencia a la boda. Prometo portarme bien… al menos hasta que empiece la fiesta jeje`;
-      }
+      mensaje = `¡Hola! Soy ${nombre}, confirmo mi asistencia a la boda${textoAcompanantes}. Prometo portarme bien… al menos hasta que empiece la fiesta jeje 😜🍾`;
       break;
   }
 
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, "_blank");
 }
+
 

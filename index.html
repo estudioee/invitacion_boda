@@ -293,10 +293,22 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
   <input 
     type="text" 
     id="nombreInvitado" 
-    placeholder="Escribe tu nombre y apellido aquí..." 
+    placeholder="Escribe tu nombre y apellidos aquí..." 
     class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center"
     oninput="checkNombre()"
   /> 
+
+  <input 
+    type="number" 
+    id="acompanantes" 
+    placeholder="Número de acompañantes" 
+    min="0" 
+    class="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full max-w-md text-center"
+    oninput="generarCamposAcompanantes()"
+  />
+
+  <!-- Aquí se insertarán los nombres de los acompañantes -->
+  <div id="listaAcompanantes" class="mb-4"></div>
 
   <label for="tipoMensaje" class="block mb-2 text-[var(--primary-color)] font-semibold">
     Elige el estilo de tu mensaje
@@ -317,6 +329,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
     <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp 💌
   </button>
 </section>
+
  <img src="img/floral_divider.webp" class="floral-top" alt="Detalle floral">
 <section class="bg-white p-6 shadow-lg rounded-2xl border border-[var(--secondary-color)] mb-12 text-center">
   <h2 class="text-4xl font-playfair font-bold text-[var(--primary-color)] mb-4">Sugerencia de Regalo</h2>
